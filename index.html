@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=1728, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Spring Picnic of Cats</title>
+    <title>cat garden</title>
     <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -18,9 +18,10 @@
             align-items: center;
             overflow: hidden;
             font-family: 'Noto Sans KR', sans-serif;
+            cursor: url('bdbd.png'), auto;
         }
 
-        .stage {
+        .main-scene {
             position: relative;
             width: 1728px;
             height: 1000px;
@@ -31,17 +32,246 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             overflow: hidden;
             transform-origin: 70.5% 73%; 
-            animation: intro-zoom 2s cubic-bezier(0.16, 1, 0.3, 1) 4s both;
+            animation: opening-zoom-effect 2s cubic-bezier(0.16, 1, 0.3, 1) 4s both;
         }
 
-        .item {
+        .object {
             position: absolute;
             display: block;
             pointer-events: auto;
             height: auto;
         }
 
-        .info-wrapper {
+        @keyframes opening-zoom-effect {
+            0% { transform: scale(14.5); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes drift-horizontal {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(0px); }
+        }
+
+        @keyframes float-vertical {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes sway-heavy {
+            0% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+            100% { transform: rotate(-3deg); }
+        }
+
+        @keyframes sway-light { 
+            0% { transform: rotate(-0.3deg); }
+            50% { transform: rotate(0.3deg); }
+            100% { transform: rotate(-0.3deg); }
+        }
+
+        @keyframes walk-movement {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(150px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes show-face-front {
+            0% { opacity: 1; } 
+            50% { opacity: 0; } 
+            100% { opacity: 1; }
+        }
+
+        @keyframes show-face-back {
+            0% { opacity: 0; } 
+            50% { opacity: 1; } 
+            100% { opacity: 0; }
+        }
+
+        @keyframes wiggle-movement {
+            0% { transform: scaleX(1); }
+            50% { transform: scaleX(-1); }
+        }
+
+        .logo { 
+            top: 30px; 
+            right: 35px; 
+            width: 345px; 
+            z-index: 10; 
+        }
+
+        .cloud-left { 
+            top: -10px; 
+            left: 35px; 
+            width: 432px; 
+            z-index: 1; 
+            opacity: 0.9; 
+            animation: drift-horizontal 7s infinite ease-in-out; 
+        }
+        .cloud-center { 
+            top: 150px; 
+            left: 45%; 
+            width: 485px; 
+            z-index: 1; 
+            opacity: 0.9; 
+            animation: drift-horizontal 7s infinite ease-in-out 1s; 
+        }
+        .cloud-right { 
+            top: -30px; 
+            right: 20px; 
+            width: 345px; 
+            z-index: 1; 
+            opacity: 0.9; 
+            animation: drift-horizontal 7s infinite ease-in-out 2s; 
+        }
+        
+        .balloon-left { 
+            top: 190px; 
+            left: 24%; 
+            width: 52px; 
+            z-index: 2; 
+            animation: float-vertical 5s infinite ease-in-out 2.5s; 
+        }
+        .balloon-center { 
+            top: 80px; 
+            left: 30%; 
+            width: 105px; 
+            z-index: 2; 
+            animation: float-vertical 5s infinite ease-in-out; 
+        }
+        .balloon-right { 
+            top: 100px; 
+            left: 38%; 
+            width: 70px; 
+            z-index: 2; 
+            animation: float-vertical 5s infinite ease-in-out 2.5s; 
+        }
+
+        .tree-left { 
+            top: 230px; 
+            left: 20px; 
+            width: 173px; 
+            z-index: 3; 
+        }
+        .tree-right { 
+            top: 195px; 
+            right: 0; 
+            width: 260px; 
+            z-index: 3; 
+        }
+
+        .flower-one { 
+            top: 480px; 
+            left: 45%; 
+            width: 105px; 
+            z-index: 3; 
+            transform-origin: bottom center; 
+            animation: sway-heavy 3s infinite ease-in-out; 
+        }
+        .flower-two { 
+            bottom: 150px; 
+            right: 40%; 
+            width: 105px; 
+            z-index: 5; 
+            transform-origin: bottom center; 
+            animation: sway-heavy 4s infinite ease-in-out; 
+        }
+        .flower-three { 
+            bottom: 250px; 
+            right: 70%; 
+            width: 86px; 
+            z-index: 5; 
+            transform-origin: bottom center; 
+            animation: sway-heavy 3.5s infinite ease-in-out; 
+        }
+        .flower-bush { 
+            bottom: -50px; 
+            left: -35px; 
+            width: 518px; 
+            z-index: 5; 
+            transform-origin: bottom center; 
+            animation: sway-light 8s infinite ease-in-out; 
+        }
+
+        .cat-wiggle { 
+            top: 530px; 
+            right: 18%; 
+            width: 70px; 
+            z-index: 2;
+            animation: wiggle-movement 1s infinite steps(1);
+        }
+
+        .cat-walk-container {
+            position: absolute; 
+            top: 330px; 
+            left: 9%; 
+            width: 105px; 
+            height: auto; 
+            z-index: 4;
+            animation: walk-movement 7s infinite ease-in-out;
+        }
+        .cat-walk-container img {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: auto; 
+            display: block;
+            animation-duration: 7s; 
+            animation-iteration-count: infinite; 
+            animation-timing-function: steps(1, end);
+        }
+        .cat-face-front { 
+            transform: scaleX(-1); 
+            animation-name: show-face-front; 
+            z-index: 2; 
+        }
+        .cat-face-back { 
+            transform: scaleX(-1); 
+            animation-name: show-face-back; 
+            z-index: 1; 
+        }
+
+        .cat-greet-container {
+            position: absolute; 
+            top: 480px; 
+            left: 32%; 
+            width: 260px; 
+            z-index: 100; 
+            transform: scaleX(-1); 
+            display: grid; 
+            grid-template-areas: "stack"; 
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .cat-greet-container img { 
+            grid-area: stack; 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        .pose-sitting { 
+            opacity: 1; 
+        }
+        .pose-greeting { 
+            opacity: 0; 
+        }
+        .cat-greet-container:hover .pose-sitting { 
+            opacity: 0; 
+        }
+        .cat-greet-container:hover .pose-greeting { 
+            opacity: 1; 
+        }
+
+        .cat-main { 
+            bottom: 80px; 
+            right: 18%; 
+            width: 345px; 
+            z-index: 100; 
+        }
+
+        .text-layout {
             position: absolute;
             bottom: 50px;
             left: 0;
@@ -55,53 +285,48 @@
             color: white;
         }
 
-        .info-group-left {
+        .title-section {
             text-align: left;
         }
 
-        .info-group-right {
-            text-align: right;
+        .details-section {
+            text-align: left;
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
-        /* [수정] 모든 텍스트에 얇은 검정 테두리 적용 */
-        .info-title {
+        .main-title {
             font-family: 'Gamja Flower', cursive;
             font-size: 90px;
             margin: 0 0 15px 0;
             color: #ffffff;
             line-height: 0.9;
-            /* 1px 두께의 검정 테두리 효과 */
-            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
         }
 
-        .info-desc {
+        .description {
             font-size: 24px;
             font-weight: 500;
             margin: 0;
-            color: #ffffff; /* 가독성을 위해 완전 흰색으로 변경 */
+            color: #ffffff;
             line-height: 1.4;
-            /* 테두리 적용 */
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
-        .info-detail-row {
+        .info-row {
             font-size: 22px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: flex-start;
             gap: 15px;
         }
         
-        .info-detail-row.sub-info {
+        .info-row.small-text {
             font-size: 18px; 
-            /* 테두리가 들어가면 투명도 조절보다는 색상 자체가 옅어지는 게 나아서 opacity 제거 */
-            /* opacity: 0.8; */
         }
         
-        .gap-top {
+        .spacer {
             margin-top: 15px;
         }
 
@@ -110,170 +335,88 @@
             color: #ffffff;
             font-family: 'Gamja Flower', cursive;
             font-size: 30px;
-            /* 테두리 적용 */
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
         
-        .sub-info .label {
-            font-size: 24px;
+        .small-text .label {
+            font-size: 28px;
         }
 
         .value {
-            font-weight: 500; /* 테두리가 생기면 글자가 얇아 보일 수 있어서 400->500으로 살짝 두껍게 조정 */
+            font-weight: 500;
             color: #ffffff;
             font-size: 24px;
             letter-spacing: 0.5px;
-            /* 테두리 적용 */
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
         
-        .sub-info .value {
+        .small-text .value {
             font-size: 20px;
         }
-
-
-        @keyframes intro-zoom {
-            0% { transform: scale(14.5); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes drift {
-            0% { transform: translateX(0px); }
-            50% { transform: translateX(20px); }
-            100% { transform: translateX(0px); }
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        @keyframes sway-big {
-            0% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
-            100% { transform: rotate(-3deg); }
-        }
-        @keyframes sway-small { 
-            0% { transform: rotate(-0.3deg); }
-            50% { transform: rotate(0.3deg); }
-            100% { transform: rotate(-0.3deg); }
-        }
-        @keyframes walk-left-right {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(150px); }
-            100% { transform: translateX(0); }
-        }
-        @keyframes swap-face-front {
-            0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; }
-        }
-        @keyframes swap-face-back {
-            0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; }
-        }
-        @keyframes wiggle {
-            0% { transform: scaleX(1); }
-            50% { transform: scaleX(-1); }
-        }
-
-        .logo { top: 30px; right: 35px; width: 345px; z-index: 10; }
-
-        .cloud-1 { top: -10px; left: 35px; width: 432px; z-index: 1; opacity: 0.9; animation: drift 7s infinite ease-in-out; }
-        .cloud-2 { top: 150px; left: 45%; width: 485px; z-index: 1; opacity: 0.9; animation: drift 7s infinite ease-in-out 1s; }
-        .cloud-3 { top: -30px; right: 20px; width: 345px; z-index: 1; opacity: 0.9; animation: drift 7s infinite ease-in-out 2s; }
-        
-        .balloon-1 { top: 190px; left: 24%; width: 52px; z-index: 2; animation: float 5s infinite ease-in-out 2.5s; }
-        .balloon-2 { top: 80px; left: 30%; width: 105px; z-index: 2; animation: float 5s infinite ease-in-out; }
-        .balloon-3 { top: 100px; left: 38%; width: 70px; z-index: 2; animation: float 5s infinite ease-in-out 2.5s; }
-
-        .tree-left { top: 220px; left: 20px; width: 173px; z-index: 3; }
-        .tree-right { top: 220px; right: 0; width: 260px; z-index: 3; }
-
-        .flower-1 { top: 480px; left: 46%; width: 105px; z-index: 3; transform-origin: bottom center; animation: sway-big 3s infinite ease-in-out; }
-        .flower-2 { bottom: 150px; right: 40%; width: 105px; z-index: 5; transform-origin: bottom center; animation: sway-big 4s infinite ease-in-out; }
-        .flower-3 { bottom: 250px; right: 70%; width: 86px; z-index: 5; transform-origin: bottom center; animation: sway-big 3.5s infinite ease-in-out; }
-        .flower-bed { bottom: -50px; left: -35px; width: 518px; z-index: 5; transform-origin: bottom center; animation: sway-small 8s infinite ease-in-out; }
-
-        .wiggling-cat { 
-            top: 530px; right: 18%; width: 70px; z-index: 2;
-            animation: wiggle 1s infinite steps(1);
-        }
-
-        .walking-cat {
-            position: absolute; top: 330px; left: 9%; width: 105px; height: auto; z-index: 4;
-            animation: walk-left-right 7s infinite ease-in-out;
-        }
-        .walking-cat img {
-            position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block;
-            animation-duration: 7s; animation-iteration-count: infinite; animation-timing-function: steps(1, end);
-        }
-        .face-front { transform: scaleX(-1); animation-name: swap-face-front; z-index: 2; }
-        .face-back { transform: scaleX(-1); animation-name: swap-face-back; z-index: 1; }
-
-        .interactive-cat {
-            position: absolute; top: 480px; left: 32%; width: 260px; z-index: 100; 
-            transform: scaleX(-1); display: grid; grid-template-areas: "stack"; pointer-events: auto;
-        }
-        .interactive-cat img { grid-area: stack; width: 100%; height: auto; display: block; transition: opacity 0.3s ease; }
-        .pose-sit { opacity: 1; }
-        .pose-greet { opacity: 0; }
-        
-        .interactive-cat:hover .pose-sit { opacity: 0; }
-        .interactive-cat:hover .pose-greet { opacity: 1; }
-
-        .big-cat { bottom: 80px; right: 18%; width: 345px; z-index: 100; }
     </style>
 </head>
 <body>
 
-    <div class="stage">
-        <img src="Headt.png" class="item logo" alt="Logo">
-        <img src="cloud1.png" class="item cloud-1" alt="Cloud 1">
-        <img src="c3.png" class="item cloud-2" alt="Cloud 2">
-        <img src="cloud2.png" class="item cloud-3" alt="Cloud 3">
-        <img src="balloon3.png" class="item balloon-1" alt="Balloon 1">
-        <img src="balloon.png" class="item balloon-2" alt="Balloon 2">
-        <img src="balloon2.png" class="item balloon-3" alt="Balloon 3">
-        <img src="tree1.png" class="item tree-left" alt="Tree Left">
-        <img src="tree2.png" class="item tree-right" alt="Tree Right">
-        <img src="flower1.png" class="item flower-1" alt="Flower 1">
-        <img src="flower2.png" class="item flower-2" alt="Flower 2">
-        <img src="flower3.png" class="item flower-3" alt="Flower 3">
-        <img src="flowers.png" class="item flower-bed" alt="Flower Bed">
-        <img src="cat2.png" class="item wiggling-cat" alt="Wiggling Cat">
-        <div class="walking-cat">
-            <img src="cat1.png" class="face-front" alt="Walking Cat Front">
-            <img src="cat2.png" class="face-back" alt="Walking Cat Back">
+    <div class="main-scene">
+        <img src="Headt.png" class="object logo" alt="Logo">
+        
+        <img src="cloud1.png" class="object cloud-left" alt="Cloud Left">
+        <img src="c3.png" class="object cloud-center" alt="Cloud Center">
+        <img src="cloud2.png" class="object cloud-right" alt="Cloud Right">
+        
+        <img src="balloon3.png" class="object balloon-left" alt="Balloon Left">
+        <img src="balloon.png" class="object balloon-center" alt="Balloon Center">
+        <img src="balloon2.png" class="object balloon-right" alt="Balloon Right">
+        
+        <img src="tree1.png" class="object tree-left" alt="Tree Left">
+        <img src="tree2.png" class="object tree-right" alt="Tree Right">
+        
+        <img src="flower1.png" class="object flower-one" alt="Flower 1">
+        <img src="flower2.png" class="object flower-two" alt="Flower 2">
+        <img src="flower3.png" class="object flower-three" alt="Flower 3">
+        <img src="flowers.png" class="object flower-bush" alt="Flower Bush">
+        
+        <img src="cat2.png" class="object cat-wiggle" alt="Wiggling Cat">
+        
+        <div class="cat-walk-container">
+            <img src="cat1.png" class="cat-face-front" alt="Cat Walking Front">
+            <img src="cat2.png" class="cat-face-back" alt="Cat Walking Back">
         </div>
-        <div class="interactive-cat">
-            <img src="cat3.png" class="pose-sit" alt="Sitting Cat">
-            <img src="cat4.png" class="pose-greet" alt="Greeting Cat">
+        
+        <div class="cat-greet-container">
+            <img src="cat3.png" class="pose-sitting" alt="Cat Sitting">
+            <img src="cat4.png" class="pose-greeting" alt="Cat Greeting">
         </div>
-        <img src="cat1.png" class="item big-cat" alt="Big Cat">
+        
+        <img src="cat1.png" class="object cat-main" alt="Main Cat">
 
-        <div class="info-wrapper">
-            <div class="info-group-left">
-                <h1 class="info-title">고양이의 하루 체험 전시</h1>
-                <p class="info-desc">따스한 햇빛 아래, 고양이들과 들판에서 함께 휴식해요.</p>
+        <div class="text-layout">
+            <div class="title-section">
+                <h1 class="main-title">고양이의 하루 체험 전시</h1>
+                <p class="description">따스한 햇빛 아래, 고양이들과 들판에서 함께 휴식해요~</p>
             </div>
 
-            <div class="info-group-right">
-                <div class="info-detail-row">
-                    <span class="value">2025.04.05 - 05.31</span>
+            <div class="details-section">
+                <div class="info-row">
                     <span class="label">WHEN</span>
+                    <span class="value">2025.12.05 - 12.31</span>
                 </div>
-                <div class="info-detail-row">
-                    <span class="value">10:00 AM - 08:00 PM</span>
+                <div class="info-row">
                     <span class="label">OPEN</span>
+                    <span class="value">10:00 AM - 08:00 PM</span>
                 </div>
-                <div class="info-detail-row">
-                    <span class="value">상상마당 갤러리 2F</span>
+                <div class="info-row">
                     <span class="label">WHERE</span>
+                    <span class="value">창동 플랫폼 61, 2F</span>
                 </div>
                 
-                <div class="info-detail-row sub-info gap-top">
-                    <span class="value">디콘디 이진효</span>
+                <div class="info-row small-text spacer">
                     <span class="label">HOST</span>
+                    <span class="value">디콘디 이진효</span>
                 </div>
-                <div class="info-detail-row sub-info">
-                    <span class="value">misoka@mju.ac.kr</span>
+                <div class="info-row small-text">
                     <span class="label">CONTACT</span>
+                    <span class="value">misoka@mju.ac.kr</span>
                 </div>
             </div>
         </div>
